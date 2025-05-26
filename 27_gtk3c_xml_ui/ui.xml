@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkWindow" id="main_window">
+    <property name="title">Aplicația Mea GTK3</property>
+    <property name="default-width">300</property>
+    <property name="default-height">200</property>
+    <child>
+      <object class="GtkGrid" id="main_grid">
+        <property name="visible">true</property>
+        <property name="row-spacing">10</property>
+        <property name="column-spacing">10</property>
+        <child>
+          <object class="GtkButton" id="close_button">
+            <property name="label">Închide Aplicația</property>
+            <property name="visible">true</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+          </object>
+          <layout>
+            <property name="column">0</property>
+            <property name="row">0</property>
+            <property name="column-span">1</property>
+            <property name="row-span">1</property>
+          </layout>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>~/Desktop/Mai_2025/Gtk3_Example/29_gtk3c_xml_ui/example-4.c.html</title>
+<meta name="Generator" content="Vim/9.1">
+<meta name="plugin-version" content="vim9.0_v2">
+<meta name="syntax" content="c">
+<meta name="settings" content="number_lines,use_css,no_foldcolumn,expand_tabs,line_ids,pre_wrap,prevent_copy=,use_input_for_pc=none">
+<meta name="colorscheme" content="none">
+<style>
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.Statement { color: #ffff00; }
+.PreProc { color: #5fd7ff; }
+.Type { color: #87ffaf; }
+.LineNr { color: #ffff00; }
+.Comment { color: #00ffff; }
+.Constant { color: #ff40ff; }
+.Special { color: #ffd7d7; }
+-->
+</style>
+
+<script>
+<!--
+
+/* function to open any folds containing a jumped-to line before jumping to it */
+function JumpToLine()
+{
+  var lineNum;
+  lineNum = window.location.hash;
+  lineNum = lineNum.substr(1); /* strip off '#' */
+
+  if (lineNum.indexOf('L') == -1) {
+    lineNum = 'L'+lineNum;
+  }
+  var lineElem = document.getElementById(lineNum);
+  /* Always jump to new location even if the line was hidden inside a fold, or
+   * we corrected the raw number to a line ID.
+   */
+  if (lineElem) {
+    lineElem.scrollIntoView(true);
+  }
+  return true;
+}
+if ('onhashchange' in window) {
+  window.onhashchange = JumpToLine;
+}
+
+-->
+</script>
+</head>
+<body onload='JumpToLine();'>
+<pre id='vimCodeElement'>
+<span id="L1" class="LineNr"> 1 </span><span class="PreProc">#include </span><span class="Constant">&lt;gtk/gtk.h&gt;</span>
+<span id="L2" class="LineNr"> 2 </span>
+<span id="L3" class="LineNr"> 3 </span><span class="Type">static</span> <span class="Type">void</span>
+<span id="L4" class="LineNr"> 4 </span>print_hello (GtkWidget *widget,
+<span id="L5" class="LineNr"> 5 </span>             gpointer   data)
+<span id="L6" class="LineNr"> 6 </span>{
+<span id="L7" class="LineNr"> 7 </span>  g_print (<span class="Constant">&quot;Hello World</span><span class="Special">\n</span><span class="Constant">&quot;</span>);
+<span id="L8" class="LineNr"> 8 </span>}
+<span id="L9" class="LineNr"> 9 </span>
+<span id="L10" class="LineNr">10 </span><span class="Type">int</span>
+<span id="L11" class="LineNr">11 </span>main (<span class="Type">int</span>   argc,
+<span id="L12" class="LineNr">12 </span>      <span class="Type">char</span> *argv[])
+<span id="L13" class="LineNr">13 </span>{
+<span id="L14" class="LineNr">14 </span>  GtkBuilder *builder;
+<span id="L15" class="LineNr">15 </span>  GObject *window;
+<span id="L16" class="LineNr">16 </span>  GObject *button;
+<span id="L17" class="LineNr">17 </span>
+<span id="L18" class="LineNr">18 </span>  gtk_init (&amp;argc, &amp;argv);
+<span id="L19" class="LineNr">19 </span>
+<span id="L20" class="LineNr">20 </span>  <span class="Comment">/*</span><span class="Comment"> Construct a GtkBuilder instance and load our UI description </span><span class="Comment">*/</span>
+<span id="L21" class="LineNr">21 </span>  builder = gtk_builder_new ();
+<span id="L22" class="LineNr">22 </span>  gtk_builder_add_from_file (builder, <span class="Constant">&quot;builder.ui&quot;</span>, <span class="Constant">NULL</span>);
+<span id="L23" class="LineNr">23 </span>
+<span id="L24" class="LineNr">24 </span>  <span class="Comment">/*</span><span class="Comment"> Connect signal handlers to the constructed widgets. </span><span class="Comment">*/</span>
+<span id="L25" class="LineNr">25 </span>  window = gtk_builder_get_object (builder, <span class="Constant">&quot;window&quot;</span>);
+<span id="L26" class="LineNr">26 </span>  g_signal_connect (window, <span class="Constant">&quot;destroy&quot;</span>, G_CALLBACK (gtk_main_quit), <span class="Constant">NULL</span>);
+<span id="L27" class="LineNr">27 </span>
+<span id="L28" class="LineNr">28 </span>  button = gtk_builder_get_object (builder, <span class="Constant">&quot;button1&quot;</span>);
+<span id="L29" class="LineNr">29 </span>  g_signal_connect (button, <span class="Constant">&quot;clicked&quot;</span>, G_CALLBACK (print_hello), <span class="Constant">NULL</span>);
+<span id="L30" class="LineNr">30 </span>
+<span id="L31" class="LineNr">31 </span>  button = gtk_builder_get_object (builder, <span class="Constant">&quot;button2&quot;</span>);
+<span id="L32" class="LineNr">32 </span>  g_signal_connect (button, <span class="Constant">&quot;clicked&quot;</span>, G_CALLBACK (print_hello), <span class="Constant">NULL</span>);
+<span id="L33" class="LineNr">33 </span>
+<span id="L34" class="LineNr">34 </span>  button = gtk_builder_get_object (builder, <span class="Constant">&quot;quit&quot;</span>);
+<span id="L35" class="LineNr">35 </span>  g_signal_connect (button, <span class="Constant">&quot;clicked&quot;</span>, G_CALLBACK (gtk_main_quit), <span class="Constant">NULL</span>);
+<span id="L36" class="LineNr">36 </span>
+<span id="L37" class="LineNr">37 </span>  gtk_main ();
+<span id="L38" class="LineNr">38 </span>
+<span id="L39" class="LineNr">39 </span>  <span class="Statement">return</span> <span class="Constant">0</span>;
+<span id="L40" class="LineNr">40 </span>}
+<span id="L41" class="LineNr">41 </span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
